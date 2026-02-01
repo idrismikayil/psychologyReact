@@ -50,12 +50,17 @@ const TestPage = () => {
         setAnswers(Array(data.length).fill(null));
         setErrors(Array(data.length).fill(false));
       }
+      else{
+        toast.error(t("test_intro.error_login"));
+      }
     } catch (err: any) {
       if (!user) {
         toast.error(t("test_intro.error_login"));
       }
-      if (user?.active_test_count === 0) {
+      else if (user?.active_test_count === 0) {
         toast.error(t("test_intro.error_no_active"));
+      }else{
+           toast.error(t("test_intro.error_login"));
       }
       console.error(t("common.error"), err);
     }
