@@ -66,7 +66,6 @@ axios.interceptors.response.use(
           })
           .catch((err) => {
             localStorage.clear();
-            window.location.href = "/login";
             reject(err);
           })
           .finally(() => {
