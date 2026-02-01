@@ -51,6 +51,10 @@ const Header = () => {
                 e.preventDefault();
                 toast.error("Test etmək üçün hesabınızda aktiv test paketi olmalıdır");
               }
+              if (item.title === t("header.start_test") && user && !user?.active_test_count) {
+                e.preventDefault();
+                toast.error("Test etmək üçün hesabınızda aktiv test paketi olmalıdır");
+              }
             };
 
             return (
