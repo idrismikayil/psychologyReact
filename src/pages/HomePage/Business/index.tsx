@@ -20,6 +20,11 @@ const Business = () => {
             return;
         }
 
+        if (!user?.active_test_count) {
+            toast.error("Test etmək üçün hesabınızda aktiv test paketi olmalıdır");
+            return;
+        }
+
         navigate("/test");
     };
 
