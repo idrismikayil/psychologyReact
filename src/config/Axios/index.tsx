@@ -1,8 +1,8 @@
 import axios from "axios";
 import API from "@/api";
+import { Navigate } from "react-router-dom";
 
-
-axios.defaults.baseURL = 'https://psychology-service.octopus.com.az/';
+axios.defaults.baseURL = "https://psychology-service.octopus.com.az/";
 axios.defaults.headers["Content-Type"] = "application/json";
 axios.defaults.headers["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.timeout = 60 * 1000;
@@ -14,7 +14,7 @@ axios.interceptors.request.use(
     const accessToken = localStorage.getItem("access");
     const lang = localStorage.getItem("i18nextLng") || "en";
     if (accessToken) {
-      if (!req.url?.includes('register')) {
+      if (!req.url?.includes("register")) {
         req.headers["authorization"] = `Bearer ${accessToken}`;
       }
     }
@@ -24,15 +24,13 @@ axios.interceptors.request.use(
   (err) => {
     console.error("Request interceptor error:", err);
     return Promise.reject(err);
-  }
+  },
 );
 
 axios.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-
-
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
@@ -55,11 +53,9 @@ axios.interceptors.response.use(
       return new Promise((resolve, reject) => {
         API.Auth.refreshToken({ token, refresh })
           .then((response) => {
-            const data = response?.data
-            console.log(response)
-            const {
-              access: access,
-            } = data;
+            const data = response?.data;
+            console.log(response);
+            const { access: access } = data;
 
             localStorage.setItem("access", access);
 
@@ -69,7 +65,8 @@ axios.interceptors.response.use(
             resolve(axios(originalRequest));
           })
           .catch((err) => {
-            localStorage.clear()
+            localStorage.clear();
+            window.location.href = "/login";
             reject(err);
           })
           .finally(() => {
@@ -79,7 +76,7 @@ axios.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axios;
