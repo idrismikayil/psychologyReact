@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../../shared/media/imgs/logo.png";
 import {
   FaFacebookF,
-  FaTwitter,
-  FaYoutube,
+  FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -50,18 +49,24 @@ const Footer = () => {
 
           {/* Social icons */}
           <div className="flex gap-4 lg:gap-6 text-xl lg:text-2xl text-primary-blue">
-            <div className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300 cursor-pointer">
+            <a
+              href="#"
+              className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300"
+            >
               <FaFacebookF />
-            </div>
-            <div className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300 cursor-pointer">
-              <FaTwitter />
-            </div>
-            <div className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300 cursor-pointer">
-              <FaYoutube />
-            </div>
-            <div className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300 cursor-pointer">
+            </a>
+            <a
+              href="#"
+              className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="#"
+              className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300"
+            >
               <FaLinkedinIn />
-            </div>
+            </a>
           </div>
         </div>
 
