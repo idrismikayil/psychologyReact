@@ -251,9 +251,9 @@ const TestPage = () => {
 
       <div className="bg-zinc-100 min-h-screen">
         <div className="container mx-auto px-2 py-20">
-          <p className="style-p mb-8 text-lg text-center font-medium text-gray-700">
+          {/* <p className="style-p mb-8 text-lg text-center font-medium text-gray-700">
             {t("test_intro.description")}
-          </p>
+          </p> */}
 
           <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
             <div className="flex flex-col gap-2 p-6 bg-primary-blue">

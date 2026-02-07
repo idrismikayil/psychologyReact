@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Spin } from "antd";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import { useUser } from "@/context/UserContext";
 
 interface Plan {
   id: number | string;
@@ -22,6 +23,7 @@ export default function Packages() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [selectedInfo, setSelectedInfo] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const { refreshUser } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -40,8 +42,9 @@ export default function Packages() {
     if (paypal === "1" && token) {
       setLoading(true);
       API.Auth.buysuccess({ params: { token: token, payer_id: payerID } })
-        .then(() => {
+        .then(async () => {
           localStorage.setItem(`paypal-${token}`, "done");
+          await refreshUser();
           navigate("/profile/?paypal=success", { replace: true });
         })
         .catch(() => {

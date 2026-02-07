@@ -20,7 +20,7 @@ interface UserContextType {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   logout: () => void;
-  refreshUser: () => void;
+  refreshUser: () => Promise<void>;
   loading: boolean;
 }
 

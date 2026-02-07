@@ -134,9 +134,10 @@ const ProfilePage: React.FC = () => {
     const params = new URLSearchParams(location.search);
     const paypal = params.get("paypal");
     if (!paypal) return;
-    sessionStorage.setItem('paypal', '1')
-    if (paypal == 'success') {
-      toast.success(t("common.success"))
+    sessionStorage.setItem("paypal", "1");
+    if (paypal === "success") {
+      toast.success(t("common.success"));
+       refreshUser();
     }
   }, [location.search, t]);
 
