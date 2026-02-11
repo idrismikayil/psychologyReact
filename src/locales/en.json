@@ -143,6 +143,8 @@
     "loading": "Loading...",
     "success": "Success",
     "error": "Error",
-    "no_data": "No data found"
+    "no_data": "No data found",
+    "send": "Send",
+    "reset": "Reset"
   }
 }

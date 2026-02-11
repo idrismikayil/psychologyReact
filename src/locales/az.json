@@ -133,7 +133,9 @@
         "loading": "Yüklənir...",
         "success": "Uğurlu",
         "error": "Xəta",
-        "no_data": "Məlumat tapılmadı"
+        "no_data": "Məlumat tapılmadı",
+        "send": "Göndər",
+        "reset": "Sıfırla"
     },
     "banner": {
         "about": "Haqqımızda",
