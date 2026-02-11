@@ -18,6 +18,9 @@ import AdminOrders from "../pages/AdminOrders/index.js";
 import Register from "../pages/Register/index";
 import VerifyEmail from "../pages/VerifyEmail/index";
 
+import ForgotPassword from "../pages/Auth/ForgotPassword/index";
+import ResetPassword from "../pages/Auth/ResetPassword/index";
+
 const AppRoutes = () => {
 
   return (
@@ -46,6 +49,8 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/verify-email" element={<VerifyEmail />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
     </Routes>
   );
 };

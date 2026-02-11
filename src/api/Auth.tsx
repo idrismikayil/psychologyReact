@@ -22,7 +22,10 @@ const Index = {
     buyplan: (data: any) => Axios.post('pay/buy-plan/', data).then(res => res),
     buysuccess: (params: any) => Axios.get('pay/paypal/success/', params).then(res => res),
     getInvoices: () => Axios.get('pay/my-payments/').then(res => res),
-
+    socialLinks: () => Axios.get('auth/social-links/').then(res => res),
+    forgotPassword: (data: any) => Axios.post('auth/forgot-password/', data).then(res => res),
+    resetPassword: (data: any) => Axios.post('auth/reset-password/', data).then(res => res),
+    myPayments: () => Axios.get('pay/my-payments/').then(res => res),
 }
 
 export default Index;

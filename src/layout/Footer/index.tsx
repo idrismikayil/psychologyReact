@@ -1,4 +1,5 @@
 // bloqlar, haqqımızda, əlaqə, testlər, şəxsiyyət testləri, biznes testləri
+import React from 'react';
 import { Link } from "react-router-dom";
 import logo from "../../shared/media/imgs/logo.png";
 import {
@@ -10,6 +11,19 @@ import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const [socials, setSocials] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    import("@/api").then((module) => {
+      const API = module.default;
+      API.Auth.socialLinks().then((res) => {
+        if (res.status === 200) {
+          setSocials(res.data);
+        }
+      });
+    });
+  }, []);
+
   return (
     <div className="bg-[#0f172b]">
       <div className="flex flex-col gap-6">
@@ -49,24 +63,21 @@ const Footer = () => {
 
           {/* Social icons */}
           <div className="flex gap-4 lg:gap-6 text-xl lg:text-2xl text-primary-blue">
-            <a
-              href="#"
-              className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="#"
-              className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="#"
-              className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300"
-            >
-              <FaLinkedinIn />
-            </a>
+            {socials.map((social) => (
+              <a
+                key={social.id}
+                href={social.link}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300 w-10 h-10 flex items-center justify-center overflow-hidden"
+              >
+                {social.image ? (
+                  <img src={social.image} alt={social.title} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-xs">{social.title}</span>
+                )}
+              </a>
+            ))}
           </div>
         </div>
 

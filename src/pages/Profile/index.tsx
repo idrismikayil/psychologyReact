@@ -137,7 +137,7 @@ const ProfilePage: React.FC = () => {
     sessionStorage.setItem("paypal", "1");
     if (paypal === "success") {
       toast.success(t("common.success"));
-       refreshUser();
+      refreshUser();
     }
   }, [location.search, t]);
 
@@ -268,6 +268,31 @@ const ProfilePage: React.FC = () => {
     },
   });
 
+  // ------------------ My Payments ------------------
+  const [payments, setPayments] = useState<any[]>([]);
+  const [paymentsLoading, setPaymentsLoading] = useState(false);
+
+  const getPayments = async () => {
+    setPaymentsLoading(true);
+    try {
+      const res = await API.Auth.myPayments();
+      if (res.status === 200) {
+        setPayments(res.data);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setPaymentsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (activeTab === 'payments') {
+      getPayments();
+    }
+  }, [activeTab]);
+
+
   return (
     <>
       <div className="container mx-auto mt-10 mb-11 bg-white p-8 rounded shadow">
@@ -279,14 +304,23 @@ const ProfilePage: React.FC = () => {
               <button
                 key={tab.id}
                 className={`px-4 py-2 border-b-2 font-medium text-sm shrink-0 ${activeTab === tab.id
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-600 hover:text-blue-600"
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-600 hover:text-blue-600"
                   }`}
                 onClick={() => setActiveTab(tab.id)}
               >
                 {tab.label}
               </button>
             ))}
+            <button
+              className={`px-4 py-2 border-b-2 font-medium text-sm shrink-0 ${activeTab === 'payments'
+                ? "border-blue-500 text-blue-600"
+                : "border-transparent text-gray-600 hover:text-blue-600"
+                }`}
+              onClick={() => setActiveTab('payments')}
+            >
+              {t("profile.tabs.payments") || "My Payments"}
+            </button>
           </div>
         </div>
 
@@ -481,6 +515,46 @@ const ProfilePage: React.FC = () => {
                 {t("profile.buttons.change_pass")}
               </button>
             </form>
+          )}
+
+          {/* ---------- PAYMENTS TAB ---------- */}
+          {activeTab === "payments" && (
+            <div>
+              {paymentsLoading ? (
+                <div className="text-center text-gray-500">{t("common.loading") || "Loading..."}</div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t("profile.payments.plan")}</th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t("profile.payments.amount")}</th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{t("profile.payments.date")}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {payments.length > 0 ? (
+                        payments.map((payment: any, index: number) => (
+                          <tr key={payment.id || index}>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#{payment.id}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{payment.plan_name || payment.plan?.title || "-"}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{payment.amount} {payment.currency}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(payment.created_at).toLocaleDateString()}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={4} className="px-6 py-4 text-center text-sm text-gray-500">
+                            {t("common.no_data") || "No payment history found."}
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>

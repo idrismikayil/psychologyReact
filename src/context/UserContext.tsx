@@ -13,7 +13,7 @@ interface User {
   last_name: string;
   email?: string;
   image?: string;
-  active_test_count:number;
+  active_test_count: number;
 }
 
 interface UserContextType {
@@ -33,7 +33,7 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | {}>({});
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   const getProfile = async () => {

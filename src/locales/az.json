@@ -21,7 +21,12 @@
         "dont_have_account": "Hesabınız yoxdur? Qeydiyyatdan keçin",
         "verify_button": "Təsdiqlə",
         "verify": "Təsdiqlə",
-        "resend_code": "Kodu yenidən göndər"
+        "resend_code": "Kodu yenidən göndər",
+        "forgot_password": "Şifrəni unutmusunuz?",
+        "reset_password": "Şifrəni yenilə",
+        "new_password": "Yeni şifrə",
+        "code": "Kod",
+        "password_mismatch": "Şifrələr eyni deyil"
     },
     "footer": {
         "rights": "© Copyrights 2024. Bütün hüquqlar qorunur.",
@@ -79,7 +84,8 @@
             "info": "Məlumatlar",
             "update": "Məlumatları Yenilə",
             "avatar": "Profil Şəkli",
-            "password": "Şifrəni Dəyiş"
+            "password": "Şifrəni Dəyiş",
+            "payments": "Ödənişlərim"
         },
         "fields": {
             "name": "Ad",
@@ -100,7 +106,13 @@
         "view_result": "Nəticəyə Bax",
         "view": "Bax",
         "collapse": "Yığ",
-        "test_title_prefix": "Şəxsiyyət Testi"
+        "test_title_prefix": "Şəxsiyyət Testi",
+        "payments": {
+            "title": "Ödənişlərim",
+            "plan": "Plan",
+            "amount": "Məbləğ",
+            "date": "Tarix"
+        }
     },
     "contact": {
         "title": "Bizimlə əlaqə",
@@ -120,12 +132,13 @@
     "common": {
         "loading": "Yüklənir...",
         "success": "Uğurlu",
-        "error": "Xəta"
+        "error": "Xəta",
+        "no_data": "Məlumat tapılmadı"
     },
     "banner": {
-    "about": "Haqqımızda",
-    "contact": "Əlaqə",
-    "blogs": "Bloqlar",
-    "plans": "Planlar"
-  }
+        "about": "Haqqımızda",
+        "contact": "Əlaqə",
+        "blogs": "Bloqlar",
+        "plans": "Planlar"
+    }
 }
