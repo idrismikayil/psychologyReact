@@ -66,7 +66,7 @@ const Footer = () => {
             {socials.map((social) => (
               <a
                 key={social.id}
-                href={social.link}
+                href={social.url}
                 target="_blank"
                 rel="noreferrer"
                 className="bg-white rounded-full p-2 hover:bg-primary-blue hover:text-white duration-300 w-10 h-10 flex items-center justify-center overflow-hidden"
