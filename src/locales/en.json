@@ -146,5 +146,10 @@
     "no_data": "No data found",
     "send": "Send",
     "reset": "Reset"
+  },
+  "test_result": {
+    "download": "Download Result",
+    "result_title": "Result of 16 personality types test",
+    "loading": "Result loading..."
   }
 }

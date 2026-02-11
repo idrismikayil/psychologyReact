@@ -14,6 +14,7 @@ interface User {
   email?: string;
   image?: string;
   active_test_count: number;
+  tests?: any[];
 }
 
 interface UserContextType {

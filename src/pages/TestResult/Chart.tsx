@@ -3,7 +3,6 @@ import { Bar } from "@ant-design/plots";
 
 // scores və scaleData tiplərini 'any' kimi qəbul edirik
 const SidebarChart = ({ scores, scaleData }: any) => {
-  console.log(scores,scaleData,'-------------')
   const data = scaleData.map((scale: any) => ({
     label: scale.label,
     value: scores[scale.key] ?? 0,

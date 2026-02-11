@@ -142,5 +142,10 @@
         "contact": "Əlaqə",
         "blogs": "Bloqlar",
         "plans": "Planlar"
+    },
+    "test_result": {
+        "download": "Nəticəni yüklə",
+        "result_title": "16 tip şəxsiyyət testinin nəticəsi",
+        "loading": "Nəticə yüklənir..."
     }
 }
