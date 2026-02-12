@@ -2,8 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import image from "../../shared/media/imgs/intj-male.svg";
 import jsPDF from "jspdf";
-//@ts-ignore
-import { personalityTypes } from "../../data/personalityTypes";
+import API from "../../api";
 import SidebarChart from "./Chart";
 import { useUser } from "@/context/UserContext";
 import html2canvas from "html2canvas";
@@ -33,6 +32,16 @@ const TestResult = () => {
 
   const downloadPDF = async () => {
     if (!result) return;
+
+    if (result.file) {
+      const link = document.createElement("a");
+      link.href = result.file;
+      link.download = `MBTI-${userType}-result.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
 
     const createTitle = (text: string) =>
       new Paragraph({
@@ -197,8 +206,66 @@ const TestResult = () => {
   useEffect(() => {
     const init = async () => {
       await refreshUser();
-      if (userType && personalityTypes[userType as keyof typeof personalityTypes]) {
-        setResult(personalityTypes[userType as keyof typeof personalityTypes]);
+      if (userType) {
+        try {
+          const res = await API.Tests.personalityType(userType);
+          const data = res.data;
+
+          const mappedResult = {
+            ...data,
+            name: data.name,
+            summary: data.summary,
+            workplacePersonality: data.workplace_personality,
+            keyMotivators: data.key_motivators,
+            idealWorkEnvironment: data.ideal_work_environments,
+            coreValues: data.core_values,
+            preferredWorkTasks: data.preferred_work_tasks,
+            contributionsToOrganization: data.contributions_to_organization,
+            workingWithTeam: data.working_with_team,
+            teamHelp: data.team_helps,
+            teamIrritate: data.team_irritates,
+            teamActionSteps: data.team_action_steps,
+            communicatingWithOthers: data.communicating_with_others,
+            communicationStrengths: data.communication_strengths,
+            communicationMisunderstanding: data.communication_misunderstanding,
+            communicationActionSteps: data.communication_action_steps,
+            managingConflict: data.managing_conflict,
+            conflictHelp: data.conflict_help,
+            conflictTriggeredBy: data.conflict_triggered_by,
+            conflictIrritate: data.conflict_irritate,
+            conflictActionSteps: data.conflict_action_steps,
+            takingTheLead: data.taking_the_lead,
+            inspireOthers: data.inspire_others,
+            makeThingsHappen: data.make_things_happen,
+            leadershipDevelopment: data.leadership_development,
+            makingDecisions: data.making_decisions,
+            decisionStrengths: data.decision_strengths,
+            decisionChallenges: data.decision_challenges,
+            decisionActionSteps: data.decision_action_steps,
+            gettingThingsDone: data.getting_things_done,
+            tasksHelp: data.tasks_help,
+            tasksIrritate: data.tasks_irritate,
+            tasksActionSteps: data.tasks_action_steps,
+            growthAndDevelopment: data.growth_and_development,
+            learningImproved: data.learning_improved,
+            learningHindered: data.learning_hindered,
+            howYouViewChange: data.how_you_view_change,
+            opportunitiesForGrowth: data.opportunities_for_growth,
+            copingWithStress: data.coping_with_stress,
+            stressTriggers: data.stress_triggers,
+            bestStressResponse: data.best_stress_response,
+            othersHelpStress: data.others_help_stress,
+            worstStressResponse: data.worst_stress_response,
+            othersWorsenStress: data.others_worsen_stress,
+            achievingSuccess: data.achieving_success,
+            potentialProblems: data.potential_problems,
+            suggestionsDo: data.suggestions_do,
+            suggestionsDont: data.suggestions_dont,
+          };
+          setResult(mappedResult);
+        } catch (e) {
+          console.error("Error loading personality type:", e);
+        }
       }
     };
     init();

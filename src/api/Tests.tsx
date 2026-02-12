@@ -3,8 +3,9 @@ import Axios from "@/config/Axios/index.js"
 
 const Index = {
     questions: () => Axios.get('test/questions/').then(res => res),
-    testSingle: (id:any) => Axios.get(`test/test/${id}`).then(res => res),
-    testCreate: (data:any) => Axios.post('test/test/create/', data).then(res => res),
+    testSingle: (id: any) => Axios.get(`test/test/${id}`).then(res => res),
+    testCreate: (data: any) => Axios.post('test/test/create/', data).then(res => res),
+    personalityType: (code: string) => Axios.get(`test/personality-types/${code}/`).then(res => res),
 
     // refreshToken: (data:any) => Axios.get('auth/refresh /', { params: data }).then(res => res),
     // login: (data:any) => Axios.post('auth/login/', data).then(res => res),
