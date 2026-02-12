@@ -33,24 +33,27 @@ const TestResult = () => {
   const downloadPDF = async () => {
     if (!result) return;
 if (result.file) {
-  fetch(result.file)
-    .then(res => {
+    try {
+      const res = await fetch(result.file);
       if (!res.ok) throw new Error("Network response was not ok");
-      return res.blob();
-    })
-    .then(blob => {
+
+      const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
+
       const link = document.createElement("a");
       link.href = url;
-      link.download = `MBTI-${userType}-result.pdf`; // Fayl adı
+      link.download = `MBTI-${userType}-result.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url); // memory leak olmaması üçün
+      window.URL.revokeObjectURL(url);
+
+      return; // async function-dan çıxır
+    } catch (err) {
+      console.error("Download failed:", err);
       return;
-    })
-    .catch(err => console.error("Download failed:", err));
-}
+    }
+  }
 
     const createTitle = (text: string) =>
       new Paragraph({
