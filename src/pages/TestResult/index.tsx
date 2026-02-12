@@ -47,6 +47,7 @@ if (result.file) {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url); // memory leak olmaması üçün
+      return;
     })
     .catch(err => console.error("Download failed:", err));
 }
