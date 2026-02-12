@@ -32,28 +32,17 @@ const TestResult = () => {
 
   const downloadPDF = async () => {
     if (!result) return;
-if (result.file) {
-    try {
-      const res = await fetch(result.file);
-      if (!res.ok) throw new Error("Network response was not ok");
 
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-
+    if (result.file) {
       const link = document.createElement("a");
-      link.href = url;
+      link.href = result.file;
+      link.target = "_blank";
       link.download = `MBTI-${userType}-result.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-
-      return; // async function-dan çıxır
-    } catch (err) {
-      console.error("Download failed:", err);
       return;
     }
-  }
 
     const createTitle = (text: string) =>
       new Paragraph({
