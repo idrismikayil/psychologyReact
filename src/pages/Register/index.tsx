@@ -125,10 +125,10 @@ const Register = () => {
                                 >
                                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>
-                                {formik.touched.password && formik.errors.password && (
-                                    <p className="mt-1 text-sm text-red-500">{formik.errors.password}</p>
-                                )}
                             </div>
+                            {formik.touched.password && formik.errors.password && (
+                                <p className="mt-1 text-sm text-red-500">{formik.errors.password}</p>
+                            )}
                         </div>
 
                         <div>
@@ -156,10 +156,10 @@ const Register = () => {
                                 >
                                     {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>
-                                {formik.touched.confirm_password && formik.errors.confirm_password && (
-                                    <p className="mt-1 text-sm text-red-500">{formik.errors.confirm_password}</p>
-                                )}
                             </div>
+                            {formik.touched.confirm_password && formik.errors.confirm_password && (
+                                <p className="mt-1 text-sm text-red-500">{formik.errors.confirm_password}</p>
+                            )}
                         </div>
 
                         <div>

@@ -181,12 +181,12 @@ const ResetPassword = () => {
                                 >
                                     {showNewPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>
-                                {formik.touched.new_password && formik.errors.new_password && (
-                                    <p className="mt-1 text-sm text-red-500">
-                                        {formik.errors.new_password as string}
-                                    </p>
-                                )}
                             </div>
+                            {formik.touched.new_password && formik.errors.new_password && (
+                                <p className="mt-1 text-sm text-red-500">
+                                    {formik.errors.new_password as string}
+                                </p>
+                            )}
                         </div>
 
                         <div>
@@ -217,12 +217,12 @@ const ResetPassword = () => {
                                 >
                                     {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>
-                                {formik.touched.confirm_password && formik.errors.confirm_password && (
-                                    <p className="mt-1 text-sm text-red-500">
-                                        {formik.errors.confirm_password as string}
-                                    </p>
-                                )}
                             </div>
+                            {formik.touched.confirm_password && formik.errors.confirm_password && (
+                                <p className="mt-1 text-sm text-red-500">
+                                    {formik.errors.confirm_password as string}
+                                </p>
+                            )}
                         </div>
 
                         <div>

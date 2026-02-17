@@ -150,12 +150,12 @@ const Index = () => {
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
-                {formik.touched.password && formik.errors.password && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {formik.errors.password}
-                  </p>
-                )}
               </div>
+              {formik.touched.password && formik.errors.password && (
+                <p className="mt-1 text-sm text-red-500">
+                  {formik.errors.password}
+                </p>
+              )}
             </div>
 
             <div>
