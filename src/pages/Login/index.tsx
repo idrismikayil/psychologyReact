@@ -9,13 +9,14 @@ import { useUser } from "@/context/UserContext";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/shared/components/LanguageSwitcher";
-
-// inside component
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const Index = () => {
   const { refreshUser } = useUser();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -127,11 +128,11 @@ const Index = () => {
                   </Link>
                 </div>
               </div>
-              <div className="mt-2">
+              <div className="mt-2 relative">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder={t("auth.password")}
                   autoComplete="current-password"
                   onChange={formik.handleChange}
@@ -142,6 +143,13 @@ const Index = () => {
                     : "border-indigo-600"
                     } focus:outline-none focus:ring-1 focus:ring-indigo-400 placeholder:text-gray-400 sm:text-sm`}
                 />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
                 {formik.touched.password && formik.errors.password && (
                   <p className="mt-1 text-sm text-red-500">
                     {formik.errors.password}

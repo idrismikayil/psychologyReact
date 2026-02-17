@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import logo from "../../../shared/media/imgs/logo.png";
@@ -9,11 +9,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/shared/components/LanguageSwitcher";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ResetPassword = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { t } = useTranslation();
+    const [showNewPassword, setShowNewPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     // Get email from previous step
     const initialEmail = location.state?.email || "";
@@ -157,11 +160,11 @@ const ResetPassword = () => {
                             >
                                 {t("auth.new_password")}
                             </label>
-                            <div className="mt-2">
+                            <div className="mt-2 relative">
                                 <input
                                     id="new_password"
                                     name="new_password"
-                                    type="password"
+                                    type={showNewPassword ? "text" : "password"}
                                     placeholder={t("auth.new_password")}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -171,6 +174,13 @@ const ResetPassword = () => {
                                         : "border-indigo-600"
                                         } focus:outline-none focus:ring-1 focus:ring-indigo-400 placeholder:text-gray-400 sm:text-sm`}
                                 />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onClick={() => setShowNewPassword(!showNewPassword)}
+                                >
+                                    {showNewPassword ? <FaEyeSlash /> : <FaEye />}
+                                </button>
                                 {formik.touched.new_password && formik.errors.new_password && (
                                     <p className="mt-1 text-sm text-red-500">
                                         {formik.errors.new_password as string}
@@ -186,11 +196,11 @@ const ResetPassword = () => {
                             >
                                 {t("auth.confirm_password")}
                             </label>
-                            <div className="mt-2">
+                            <div className="mt-2 relative">
                                 <input
                                     id="confirm_password"
                                     name="confirm_password"
-                                    type="password"
+                                    type={showConfirmPassword ? "text" : "password"}
                                     placeholder={t("auth.confirm_password")}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -200,6 +210,13 @@ const ResetPassword = () => {
                                         : "border-indigo-600"
                                         } focus:outline-none focus:ring-1 focus:ring-indigo-400 placeholder:text-gray-400 sm:text-sm`}
                                 />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                >
+                                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                                </button>
                                 {formik.touched.confirm_password && formik.errors.confirm_password && (
                                     <p className="mt-1 text-sm text-red-500">
                                         {formik.errors.confirm_password as string}

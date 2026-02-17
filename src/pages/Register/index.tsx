@@ -8,11 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -101,11 +104,11 @@ const Register = () => {
                             <label htmlFor="password" className="block text-sm font-medium text-gray-900">
                                 {t("auth.password")}
                             </label>
-                            <div className="mt-2">
+                            <div className="mt-2 relative">
                                 <input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     placeholder={t("auth.password")}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -115,6 +118,13 @@ const Register = () => {
                                         : "border-indigo-600"
                                         } focus:outline-none focus:ring-1 focus:ring-indigo-400 placeholder:text-gray-400 sm:text-sm`}
                                 />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </button>
                                 {formik.touched.password && formik.errors.password && (
                                     <p className="mt-1 text-sm text-red-500">{formik.errors.password}</p>
                                 )}
@@ -125,11 +135,11 @@ const Register = () => {
                             <label htmlFor="confirm_password" className="block text-sm font-medium text-gray-900">
                                 {t("auth.confirm_password")}
                             </label>
-                            <div className="mt-2">
+                            <div className="mt-2 relative">
                                 <input
                                     id="confirm_password"
                                     name="confirm_password"
-                                    type="password"
+                                    type={showConfirmPassword ? "text" : "password"}
                                     placeholder={t("auth.confirm_password")}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -139,6 +149,13 @@ const Register = () => {
                                         : "border-indigo-600"
                                         } focus:outline-none focus:ring-1 focus:ring-indigo-400 placeholder:text-gray-400 sm:text-sm`}
                                 />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                >
+                                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                                </button>
                                 {formik.touched.confirm_password && formik.errors.confirm_password && (
                                     <p className="mt-1 text-sm text-red-500">{formik.errors.confirm_password}</p>
                                 )}

@@ -66,12 +66,12 @@
   },
   "test_intro": {
     "description": "This personality test will show you which of the 9 personality types suits you best.",
-    "take_test_title": "TAKE THE PERSONALITY TEST",
-    "scale": {
-      "disagree": "Strongly Disagree",
-      "neutral": "Neutral",
-      "agree": "Strongly Agree"
-    },
+     "take_test_title": "ŞƏXSİYYƏT TESTİNDƏN KEÇMƏK",
+        "scale": {
+            "disagree": "Qətiyyən razı deyiləm",
+            "neutral": "Neytral",
+            "agree": "Tamamilə razıyam"
+        },
     "buttons": {
       "back": "Back",
       "next": "Next",
