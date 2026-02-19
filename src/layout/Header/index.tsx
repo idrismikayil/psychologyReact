@@ -24,7 +24,6 @@ const Header = () => {
     { title: t("header.start_test"), link: "/test", isButton: true },
   ];
 
-  console.log(user, "");
   const handleLogout = () => {
     logout();
     navigate("/");
