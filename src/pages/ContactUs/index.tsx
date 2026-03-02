@@ -109,41 +109,28 @@ const ContactPage = () => {
             </p>
 
             {contactInfo && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <HiOutlineLocationMarker className="text-primary-blue w-6 h-6" />
-                  <a
-                    href={contactInfo.location_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-800 hover:underline"
-                  >
-                    {contactInfo.location}
-                  </a>
+              <div className="space-y-8 mt-10">
+                <div className="flex items-center space-x-6 p-4 bg-blue-50 rounded-lg shadow-sm border border-blue-100">
+                  <div className="bg-white p-3 rounded-full shadow-md">
+                    <HiOutlinePhone className="text-primary-blue w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">{t("contact.phone", "Phone")}</h3>
+                    <a href={`tel:${contactInfo.phone}`} className="hover:underline text-xl font-bold text-gray-900 mt-1 block">{contactInfo.phone}</a>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <HiOutlinePhone className="text-primary-blue w-6 h-6" />
-                  <p className="text-gray-800">{contactInfo.phone}</p>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <HiOutlineMail className="text-primary-blue w-6 h-6" />
-                  <p className="text-gray-800">{contactInfo.email}</p>
+
+                <div className="flex items-center space-x-6 p-4 bg-blue-50 rounded-lg shadow-sm border border-blue-100">
+                  <div className="bg-white p-3 rounded-full shadow-md">
+                    <HiOutlineMail className="text-primary-blue w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">{t("contact.email", "Email")}</h3>
+                    <a href={`mailto:${contactInfo.email}`} className="hover:underline text-xl font-bold text-gray-900 mt-1 block">{contactInfo.email}</a>
+                  </div>
                 </div>
               </div>
             )}
-
-            <div className="mt-10 rounded-lg overflow-hidden shadow-lg h-64">
-              <iframe
-                title="Google Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.466143234497!2d49.8503481151945!3d40.38313297936948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d9a1f4cc407%3A0x9d4b1c0680c3b3d9!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2sus!4v1690000000000!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
           </div>
 
           <form
@@ -167,8 +154,8 @@ const ContactPage = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.full_name}
                 className={`block w-full rounded-md border px-3 py-2 ${formik.touched.full_name && formik.errors.full_name
-                    ? "border-red-500"
-                    : "border-gray-300"
+                  ? "border-red-500"
+                  : "border-gray-300"
                   } focus:outline-none focus:ring-1 focus:ring-primary-blue text-gray-900`}
               />
               {formik.touched.full_name && formik.errors.full_name && (
@@ -194,8 +181,8 @@ const ContactPage = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
                 className={`block w-full rounded-md border px-3 py-2 ${formik.touched.email && formik.errors.email
-                    ? "border-red-500"
-                    : "border-gray-300"
+                  ? "border-red-500"
+                  : "border-gray-300"
                   } focus:outline-none focus:ring-1 focus:ring-primary-blue text-gray-900`}
               />
               {formik.touched.email && formik.errors.email && (
@@ -221,8 +208,8 @@ const ContactPage = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.subject}
                 className={`block w-full rounded-md border px-3 py-2 ${formik.touched.subject && formik.errors.subject
-                    ? "border-red-500"
-                    : "border-gray-300"
+                  ? "border-red-500"
+                  : "border-gray-300"
                   } focus:outline-none focus:ring-1 focus:ring-primary-blue text-gray-900`}
               />
               {formik.touched.subject && formik.errors.subject && (
@@ -248,8 +235,8 @@ const ContactPage = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.message}
                 className={`block w-full rounded-md border px-3 py-2 ${formik.touched.message && formik.errors.message
-                    ? "border-red-500"
-                    : "border-gray-300"
+                  ? "border-red-500"
+                  : "border-gray-300"
                   } focus:outline-none focus:ring-1 focus:ring-primary-blue text-gray-900`}
               />
               {formik.touched.message && formik.errors.message && (
