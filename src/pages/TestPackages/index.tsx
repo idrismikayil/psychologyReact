@@ -73,7 +73,7 @@ export default function Packages() {
   }, []);
 
   const toggleInfo = (id: string | number) => {
-    setSelectedInfo((prev) => (prev === id ? null : `${id}`));
+    setSelectedInfo((prev) => (prev === String(id) ? null : String(id)));
   };
 
   const handleBuy = async (planId: string | number) => {
@@ -131,7 +131,6 @@ export default function Packages() {
                   {plan.customerPrice}
                   <span className="text-xl font-normal ml-1">{plan.currency}</span>
                 </div>
-                <div className="text-gray-500 mt-2">{plan.tests_count} test</div>
 
                 <hr className="my-6 border-gray-300" />
 
@@ -148,18 +147,6 @@ export default function Packages() {
                     </svg>
                     {t("plans.test_count")}: {plan.tests_count}
                   </li>
-                  <li className="flex items-center text-gray-600">
-                    <svg
-                      className="w-5 h-5 text-gray-400 mr-2 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {t("plans.price")}: {plan.customerPrice} {plan.currency}
-                  </li>
                 </ul>
 
                 <button
@@ -175,21 +162,6 @@ export default function Packages() {
                 {selectedInfo === `${plan.id}` && (
                   <div className="my-4 p-4 border-l-4 rounded-lg shadow-sm animate-fadeIn bg-blue-50 border-blue-500 text-blue-600">
                     <div className="flex items-start">
-                      <svg
-                        className="w-5 h-5 mt-0.5 mr-3 flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13 16h-1v-4h-1m1-4h.01M12 20c4.418 
-                            0 8-3.582 8-8s-3.582-8-8-8-8 
-                            3.582-8 8 3.582 8 8 8z"
-                        />
-                      </svg>
                       <p className="text-sm leading-relaxed">{plan.short_description}</p>
                     </div>
                   </div>
