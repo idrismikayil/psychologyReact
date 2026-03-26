@@ -50,7 +50,7 @@ const TestPage = () => {
         setAnswers(Array(data.length).fill(null));
         setErrors(Array(data.length).fill(false));
       }
-      else{
+      else {
         toast.error(t("test_intro.error_login"));
       }
     } catch (err: any) {
@@ -59,8 +59,8 @@ const TestPage = () => {
       }
       else if (user?.active_test_count === 0) {
         toast.error(t("test_intro.error_no_active"));
-      }else{
-           toast.error(t("test_intro.error_login"));
+      } else {
+        toast.error(t("test_intro.error_login"));
       }
       console.error(t("common.error"), err);
     }
@@ -170,8 +170,8 @@ const TestPage = () => {
         <div
           key={index}
           className={`content text-center font-semibold text-xl flex flex-col gap-8 w-full border transition-all duration-300 rounded mb-4 shadow-sm ${isSelected
-              ? "bg-primary-blue text-white border-blue-700"
-              : "bg-blue-50 text-primary-blue border-blue-200 hover:bg-blue-100"
+            ? "bg-primary-blue text-white border-blue-700"
+            : "bg-blue-50 text-primary-blue border-blue-200 hover:bg-blue-100"
             } ${errors[index] ? "border-red-500 border-2" : ""}`}
           style={{ paddingBottom: 35, paddingTop: 10, margin: "auto" }}
         >
@@ -207,16 +207,16 @@ const TestPage = () => {
                     />
                     <div
                       className={`w-6 h-6 md:w-9 md:h-9 border-2 rounded-full flex items-center justify-center transition-all ${isSelected
-                          ? "border-white"
-                          : "border-primary-blue bg-white shadow-inner"
+                        ? "border-white"
+                        : "border-primary-blue bg-white shadow-inner"
                         }`}
                     >
                       <div
                         className={`w-3 h-3 md:w-5 md:h-5 rounded-full transition-all ${isActive
-                            ? isSelected
-                              ? "bg-white"
-                              : "bg-primary-blue"
-                            : "bg-transparent"
+                          ? isSelected
+                            ? "bg-white"
+                            : "bg-primary-blue"
+                          : "bg-transparent"
                           }`}
                       ></div>
                     </div>
@@ -249,7 +249,61 @@ const TestPage = () => {
         />
       </Helmet>
 
-      <div className="bg-zinc-100 min-h-screen">
+      {/* Tərəqqi İndikatoru (Progress Indicator Box) */}
+      {questions.length > 0 && (
+        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-3 bg-white p-4 rounded-2xl shadow-2xl border border-blue-100 min-w-[120px] transition-all duration-300 hover:scale-105">
+          <div className="text-center">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
+              {t("") || ""}
+            </p>
+            <div className="flex items-baseline justify-center gap-1">
+              <span className="text-3xl font-black text-primary-blue">
+                {answers.filter((a) => a !== null).length}
+              </span>
+              <span className="text-sm font-bold text-gray-400">/ {questions.length}</span>
+            </div>
+          </div>
+
+          <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-primary-blue transition-all duration-500 ease-out rounded-full"
+              style={{
+                width: `${(answers.filter((a) => a !== null).length / questions.length) * 100}%`
+              }}
+            ></div>
+          </div>
+
+          <p className="text-[10px] font-bold text-blue-400">
+            {Math.round((answers.filter((a) => a !== null).length / questions.length) * 100)}%
+          </p>
+        </div>
+      )}
+
+      {/* Mobil üçün Tərəqqi İndikatoru (Mobile Progress) */}
+      {questions.length > 0 && (
+        <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-blue-100 p-3 z-50 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+          <div className="container mx-auto flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-bold text-primary-blue">
+                {answers.filter((a) => a !== null).length} / {questions.length}
+              </span>
+            </div>
+            <div className="flex-1 bg-gray-100 h-2 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary-blue transition-all duration-500 ease-out"
+                style={{
+                  width: `${(answers.filter((a) => a !== null).length / questions.length) * 100}%`
+                }}
+              ></div>
+            </div>
+            <span className="text-xs font-bold text-blue-500">
+              {Math.round((answers.filter((a) => a !== null).length / questions.length) * 100)}%
+            </span>
+          </div>
+        </div>
+      )}
+
+      <div className="bg-zinc-100 min-h-screen pb-20 lg:pb-0">
         <div className="container mx-auto px-2 py-20">
           {/* <p className="style-p mb-8 text-lg text-center font-medium text-gray-700">
             {t("test_intro.description")}

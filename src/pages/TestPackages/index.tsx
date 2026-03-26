@@ -162,7 +162,9 @@ export default function Packages() {
                 {selectedInfo === `${plan.id}` && (
                   <div className="my-4 p-4 border-l-4 rounded-lg shadow-sm animate-fadeIn bg-blue-50 border-blue-500 text-blue-600">
                     <div className="flex items-start">
-                      <p className="text-sm leading-relaxed">{plan.short_description}</p>
+                      <p className="text-sm leading-relaxed text-center">
+                        {plan.short_description}
+                      </p>
                     </div>
                   </div>
                 )}
