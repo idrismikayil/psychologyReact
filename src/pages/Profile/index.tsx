@@ -5,6 +5,7 @@ import API from "@/api";
 import { FiUser, FiMail, FiEye, FiEyeOff, FiHash } from "react-icons/fi";
 import UserImg from "../../shared/media/imgs/userImg.jpg";
 import ProfileTestResults from "../../shared/components/ProfileTestResults";
+import LicenseManagement from "./LicenseManagement";
 import { useUser } from "@/context/UserContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -127,6 +128,7 @@ const ProfilePage: React.FC = () => {
     { id: "update", label: t("profile.tabs.update") },
     { id: "avatar", label: t("profile.tabs.avatar") },
     { id: "password", label: t("profile.tabs.password") },
+    { id: "licenses", label: t("licenses.tab_title") || "Send Test" },
   ];
 
   const location = useLocation();
@@ -346,7 +348,12 @@ const ProfilePage: React.FC = () => {
                 <div>
                   <p className="text-gray-500 text-sm">{t("profile.fields.active_test_count")}</p>
                   <p className="text-lg font-medium text-gray-900">
-                    {user?.active_test_count}
+                    {user?.available_test_count ?? user?.active_test_count} / {user?.active_test_count}
+                    {(user?.reserved_test_count ?? 0) > 0 && (
+                      <span className="text-sm text-yellow-600 ml-2">
+                        ({user?.reserved_test_count} {t("licenses.credits_reserved") || "reserved"})
+                      </span>
+                    )}
                   </p>
                 </div>
               </div>
@@ -556,6 +563,9 @@ const ProfilePage: React.FC = () => {
               )}
             </div>
           )}
+
+          {/* ---------- LICENSES TAB ---------- */}
+          {activeTab === "licenses" && <LicenseManagement />}
         </div>
       </div>
 

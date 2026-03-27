@@ -15,12 +15,12 @@ const Business = () => {
             return;
         }
 
-        if (user?.active_test_count === 0) {
+        if (user?.available_test_count === 0) {
             toast.error("Test etmək üçün hesabınızda aktiv test paketi olmalıdır");
             return;
         }
 
-        if (!user?.active_test_count) {
+        if (!user?.available_test_count) {
             toast.error("Test etmək üçün hesabınızda aktiv test paketi olmalıdır");
             return;
         }

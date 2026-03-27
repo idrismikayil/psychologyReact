@@ -57,7 +57,7 @@ const TestPage = () => {
       if (!user) {
         toast.error(t("test_intro.error_login"));
       }
-      else if (user?.active_test_count === 0) {
+      else if (user?.available_test_count === 0) {
         toast.error(t("test_intro.error_no_active"));
       } else {
         toast.error(t("test_intro.error_login"));
@@ -347,7 +347,7 @@ const TestPage = () => {
                   <button
                     type="button"
                     className="bg-primary-blue border-primary-blue border-[2px] rounded-lg py-2 px-8 font-semibold text-white hover:bg-blue-700 transition-all duration-300"
-                    onClick={!user || user?.active_test_count === 0 ? () => toast.error(t("test_intro.error_no_active")) : nextQuestions}
+                    onClick={!user || user?.available_test_count === 0 ? () => toast.error(t("test_intro.error_no_active")) : nextQuestions}
                   >
                     {t("test_intro.buttons.next")}
                   </button>

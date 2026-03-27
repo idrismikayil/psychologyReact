@@ -20,6 +20,7 @@ import VerifyEmail from "../pages/VerifyEmail/index";
 
 import ForgotPassword from "../pages/Auth/ForgotPassword/index";
 import ResetPassword from "../pages/Auth/ResetPassword/index";
+import RedeemTest from "../pages/RedeemTest/index";
 
 const AppRoutes = () => {
 
@@ -51,6 +52,7 @@ const AppRoutes = () => {
       <Route path="/verify-email" element={<VerifyEmail />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/redeem/:token" element={<RedeemTest />} />
     </Routes>
   );
 };

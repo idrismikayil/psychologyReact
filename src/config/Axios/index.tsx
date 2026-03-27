@@ -2,7 +2,7 @@ import axios from "axios";
 import API from "@/api";
 import { Navigate } from "react-router-dom";
 
-axios.defaults.baseURL = "https://psychology-service.octopus.com.az/";
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/";
 axios.defaults.headers["Content-Type"] = "application/json";
 axios.defaults.headers["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.timeout = 60 * 1000;

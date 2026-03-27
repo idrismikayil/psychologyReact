@@ -37,7 +37,13 @@ const Index = () => {
           localStorage.setItem("refresh", response.data.refresh);
           localStorage.setItem("access", response.data.access);
           refreshUser();
-          navigate("/");
+          const pendingRedeem = localStorage.getItem("pendingRedeemUrl");
+          if (pendingRedeem) {
+            localStorage.removeItem("pendingRedeemUrl");
+            navigate(pendingRedeem);
+          } else {
+            navigate("/");
+          }
         } else {
           throw new Error(response.data.message || t("common.error"));
         }

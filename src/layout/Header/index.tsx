@@ -46,11 +46,11 @@ const Header = () => {
                 e.preventDefault();
                 toast.error("Zəhmət olmasa, əvvəlcə daxil olun");
               }
-              if (item.title === t("header.start_test") && user && user?.active_test_count == 0) {
+              if (item.title === t("header.start_test") && user && user?.available_test_count == 0) {
                 e.preventDefault();
                 toast.error("Test etmək üçün hesabınızda aktiv test paketi olmalıdır");
               }
-              if (item.title === t("header.start_test") && user && !user?.active_test_count) {
+              if (item.title === t("header.start_test") && user && !user?.available_test_count) {
                 e.preventDefault();
                 toast.error("Test etmək üçün hesabınızda aktiv test paketi olmalıdır");
               }

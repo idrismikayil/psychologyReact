@@ -14,6 +14,8 @@ interface User {
   email?: string;
   image?: string;
   active_test_count: number;
+  reserved_test_count: number;
+  available_test_count: number;
   tests?: any[];
 }
 
@@ -53,7 +55,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
     setUser(null);
   };
 

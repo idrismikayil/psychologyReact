@@ -26,6 +26,18 @@ const Index = {
     forgotPassword: (data: any) => Axios.post('auth/forgot-password/', data).then(res => res),
     resetPassword: (data: any) => Axios.post('auth/reset-password/', data).then(res => res),
     myPayments: () => Axios.get('pay/my-payments/').then(res => res),
+
+    // License transfer
+    sendInvitation: (data: { recipient_email: string; credit_count?: number; is_shareable?: boolean; expires_in_days?: number }) =>
+        Axios.post('licenses/invitations/send/', data).then(res => res),
+    myInvitations: () =>
+        Axios.get('licenses/invitations/').then(res => res),
+    revokeInvitation: (id: number) =>
+        Axios.post(`licenses/invitations/${id}/revoke/`).then(res => res),
+    validateRedeemToken: (token: string) =>
+        Axios.get(`licenses/redeem/validate/${token}/`).then(res => res),
+    redeemInvitation: (token: string) =>
+        Axios.post(`licenses/redeem/${token}/`).then(res => res),
 }
 
 export default Index;
